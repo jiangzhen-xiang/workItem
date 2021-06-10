@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <p>fasd"</r>"hsfdlkjfdsjafhld</p>
+     <div id="root" >
+        <div v-html="msg" >{{msg}}</div>
+        <p>
+            <span>{{name.firstName}}-{{msg}}</span>
+        </p>
+    </div>
+    <script>
+        // var str = "程序猿帅不帅?\n1.帅\n2.非常帅\n3.呵呵";
+        // alert(str);
+        // 将模板和数据结合生成真正的html标签
+        function compiler(template,data){
+            let childN=template.childNodes;
+            for(let i=0;i<childN.length;i++){
+                let type=childN[i].nodeType;
+                if(type===1){
+                    compiler(childN[i],data);
+                }else if(type===3){
+                    let value=childN[i].nodeValue;
+                    value=value.replace(/\{\{(.+?)\}\}/g,function(_,con){
+                        con=con.trim();
+                        let result=data[con];
+                        return result;
+                    })
+                    childN[i].nodeValue=value;
+                }
+            }
+        }
+        function MYVue(options){
+            // 内部数据使用下划线开头，只读数据使用$开头
+            this._el=options.el;
+            this._data=options.data;
+            this.$el=this._templateDOM=document.querySelector(this._el);
+            this._parent=this._templateDOM.parentNode;
+            this.render();
+        }
+        // 模板结合数据得到真正的DOM元素并加到页面中
+        MYVue.prototype.render=function(){
+            this.compiler();
+        }
+        // 将模板与数据结合得到真正的DOM元素
+        MYVue.prototype.compiler=function(){
+            let realTemplateDOM=this._templateDOM.cloneNode(true)
+            compiler(realTemplateDOM,this._data);
+            console.log(realTemplateDOM,this._data);
+            this.update(realTemplateDOM);
+        }
+        // 将结合后的html元素加到页面中
+        MYVue.prototype.update=function(real){
+            this._parent.replaceChild(real,document.querySelector('#root'))
+        }
+
+        let app=new MYVue({
+            el:"#root",
+            data:{
+                msg:"hello<br>dncd",
+                name:{firstName:"jj"},
+                
+            }
+        })
+
+
+        // 通过字符串的路径来访问对象
+        // function getValueByPath(obj,path){
+        //     let pathArr=path.split(".");
+        //     for(let i=0;i<pathArr.length;i++){
+        //         obj=obj[pathArr[i]];
+        //     }
+        //     return obj;
+        // }
+        // function getValueByPath(obj,path){
+        //     let pathArr=path.split(".");
+        //     let res=obj;
+        //     let prop;
+        //     while(prop=pathArr.shift()){
+        //         res=res[prop];
+        //     }
+        //     return res;
+        // }
+        function createGetValueByPath(path){
+            let pathArr=path.split(".");
+            return function getValueByPath(obj){
+                let res=obj;
+                let prop;
+                while(prop=pathArr.shift()){
+                    res=res[prop];
+                }
+                return res;
+            }
+        }
+        let getValueByPath=createGetValueByPath("name.firstName")
+        let obj={
+            name:{
+                firstName:"jj"
+            }
+        }
+       let result=getValueByPath(obj)
+       console.log(result)
+    // 模板不会变化，数据常常变化，函数颗粒化的技巧（很重要的设计模式）
+    // vue将模板转化为抽象语法树，再让抽象语法树生成虚拟DOM，利用虚拟DOM渲染到页面当中\
+    // 中国银行
+    </script>
+</body>
+</html>

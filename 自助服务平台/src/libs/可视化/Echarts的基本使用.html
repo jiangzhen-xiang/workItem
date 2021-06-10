@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+    <script src="./jj.js"></script>
+    <style>
+        #container{
+            width:100%;
+            height:400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" ></div>
+    <script>
+        /*
+            1.引入Echarts；
+            2.准备一个展示图表的容器；
+            3.初始化Echarts实例对象；
+            4.准备配置项；
+            5.将配置项设置给Echarts实例对象
+        */
+       
+        let container=document.querySelector("#container")
+        let chart=echarts.init(container,'jj'); //init有两个参数1.dom节点，2.主题
+        // window.onresize=function(){
+        //     // container.style.width=document.body.clientWidth;
+        //     chart.resize(); //大小重置
+        //     // console.log(getComputedStyle(container)["width"]);
+        // }
+        window.onresize=chart.resize;
+        let data1=[70,90,86,94,67,86,99,72];
+        let data2=[100,70,92,30,95,66,79,92];
+        // let options={
+        //     title:{
+        //         text:"成绩",
+        //         x:"center",
+        //         link:"https://www.baidu.com",
+        //         textStyle:{
+        //             color:"red",
+        //             fontSize:"20"
+        //         }
+        //     },
+        //     xAxis:{
+        //         type:"category",
+        //         data:["张三","李四","王五"]
+        //     },
+        //     yAxis:{
+        //         type:"value",
+        //     },
+        //     series:[
+        //         {
+        //             name:"语文",
+        //             type:"bar",
+        //             data:[80,87,55]
+        //         }
+        //     ]   
+
+        // }
+
+        let options={
+            animation:true,//控制动画是否开启
+            animationDuration:5000,//动画持续的时间，支持回调函数，回调函数每个参数都代表一个动画
+            animationEasing:'linear',//bounceOut回弹 缓动动画
+            animationThreshold:7,//单种形式的元素超过这个数的，没有动画效果
+            title:{
+                text:"成绩",
+                // x:"center",
+                textStyle:{
+                    color:"red",
+                },
+                borderWidth:1,
+                borderColor:"red",
+                borderRadius:5,
+                link:"https://www.baidu.com",
+                left:50,
+                top:10
+            },
+            grid:{  //设置网格
+                show:false,
+                borderWidth:1,
+                borderColor:"blue",
+                left:120,
+                top:120,
+                // width:300,
+                // height:200,
+            },
+            tooltip:{
+                // trigger:"item"  一定要把鼠标放到柱的内部才会触发
+                trigger:"axis", //鼠标放到柱的轴上就会触发
+                triggerOn:"click", //默认mouseOver
+                // formatter:"{b}的{a}成绩是{c}"
+                formatter:function(arg){
+                    // console.log(...arg);
+                    let {name,seriesName,value}=[...arg][0];
+                    return name+"的"+seriesName+"成绩是"+value;
+                }
+            },
+            // dataZoom:[
+            //     // {type:"slider"}//区域滑块缩放
+            //     // {type:"inside"}//利用鼠标滚轮或双指缩放
+            //     {
+            //         type:"slider",
+            //         xAxisIndex:0  //给第0个x轴添加滑块
+            //     },
+            //     {
+            //         type:"slider",
+            //         yAxisIndex:0, //给第0个y轴添加滑块
+            //         start:0, //初始状态缩放情况
+            //         end:80
+            //     }
+            // ],  
+            toolbox:{
+                feature:{
+                    saveAsImage:{}, //导出图片
+                    dataView:{}, //数据视图
+                    restore:{},   //数据还原
+                    
+                    // dataZoom:{},  //区域缩放
+                    magicType:{
+                        type:["bar","line"] //动态图表类型的切换
+                    }
+                }
+            },
+            legend:{
+                data:["数学","英语"]
+            },
+            xAxis:{
+                type:"category",
+                data:["小红","小明","小李","小周","小白","小王","小江","小程"]
+            },
+            yAxis:{
+                type:"value"
+            },
+            series:[
+                {
+                    name:"数学",
+                    type:"bar",
+                    data:data1,
+                    markPoint:{
+                        data:[
+                            {type:"max",name:"最大值"},
+                            {type:"min",name:"最小值"}
+                        ]
+                    },
+                    markLine:{
+                        data:[
+                            {type:"average",name:"平均值"}
+                        ]
+                    },
+                    label:{
+                        show:true,  //每一条的数值显示出来
+                        rotate:60,  //旋转60度
+                        position:"inside"  //显示的位置 
+                    },
+                    barWidth:"30%",
+                    itemStyle:{
+                        color:{
+                            type:"linear", //线性渐变
+                            x:0,
+                            y:0,
+                            x2:0,
+                            y2:1,
+                            colorStops:[
+                                {offset:0,color:'red'},
+                                {offset:1,color:'blue'},
+                            ]
+                        }
+                    }
+                },
+                {
+                    name:"英语",
+                    type:"bar",
+                    data:data2,
+                    label:{
+                        show:true,
+                        position:"inside"
+                    },
+                    markPoint:{
+                        data:[
+                            {type:"max",name:"最大值"},
+                            {type:"min",name:"最小值"}
+                        ]
+                    },
+                    markLine:{
+                        data:[
+                            {type:"average",name:"平均值"}
+                        ]
+                    }, 
+                    barWidth:"30%",
+                    // itemStyle:{
+                    //     color:{
+                    //         type:'linear',
+                    //         x:0,
+                    //         y:1,
+                    //         x2:0,
+                    //         y2:1,
+                    //         colorStops:[
+                    //             {offset:0,color:'yellow'},
+                    //             {offset:1,color:'orange'},
+                    //         ]
+                    //     }
+                    // }
+                    itemStyle:{
+                        color:{
+                            type:'radial', //径向渐变
+                            x:0.5,
+                            y:0.5,
+                            r:1,
+                            colorStops:[
+                                {offset:0,color:'red'},
+                                {offset:1,color:'green'},
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+        chart.setOption(options);
+    </script>
+</body>
+</html>

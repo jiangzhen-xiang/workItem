@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+</head>
+<body>
+    <div id="root" style="width:800px;height:500px;margin: 100px auto;"></div>
+    <script>
+        let root=document.querySelector("#root");
+        let echart=echarts.init(root);
+        let data1=[20,40,56,64,37,16,69,72];
+        let data2=[10,7,9,3,5,6,9,2];
+        let cate=["小红","小明","小李","小周","小白","小王","小江","小程"];
+        let options={
+            title:{
+                text:"成绩",
+                textStyle:{
+                    color:"green",
+                    fontSize:20,
+                },
+                borderWidth:1,
+                borderColor:"red",
+                borderRadius:5,
+                link:"https://www.baidu.com",
+                left:50,
+                top:10,
+            },
+            toolbox:{
+                feature:{
+                    saveAsImage:{},
+                    dataView:{},
+                    restore:{},
+                    dataZoom:{},
+                    magicType:{
+                        type:["line","bar"]
+                    }
+                }
+            },
+            legend:{
+                data:["数学","英语"]
+            },
+            xAxis:{
+                type:"category",
+                data:cate,
+                boundaryGap:false //紧挨边缘
+            },
+            yAxis:{
+                type:"value",
+                scale:true  //当数据差别较小时使用此属性缩放
+            },
+            tooltip:{
+                // trigger:"axis",
+                triggerOn:"mouseover",
+            },
+            series:[
+                {
+                    name:"数学",
+                    type:"line",
+                    data:data1,
+                    // markPoint:{
+                    //     data:[
+                    //         {type:"max",name:"最大值"},
+                    //         {type:"min",name:"最小值"},
+                    //     ]
+                    // },
+                    // markLine:{
+                    //     data:[
+                    //         {type:"average",name:"平均值"}
+                    //     ]
+                    // },
+                    // markArea:{ //区域标记
+                    //     data:[
+                    //         [
+                    //             {xAxis:"小红"},
+                    //             {xAxis:"小李"},
+                    //         ],
+                    //         [
+                    //             {xAxis:"小江"},
+                    //             {xAxis:"小程"}
+                    //         ]
+                    //     ]
+                    // },
+                    // smooth:true, //线条平滑
+                    // lineStyle:{ //线条样式
+                    //     color:"green",
+                    //     type:"dashed" //dashed dotted solid
+                    // },
+                    areaStyle:{ //填充风格
+                        color:"pink"
+                    },
+                    stack:"l" //堆叠图
+                },
+                {
+                    name:"英语",
+                    type:"line",
+                    data:data2,
+                    // markPoint:{
+                    //     data:[
+                    //         {type:"max",name:"最大值"},
+                    //         {type:"min",name:"最小值"},
+                    //     ]
+                    // },
+                    // markLine:{
+                    //     data:[
+                    //         {type:"average",name:"平均值"}
+                    //     ]
+                    // },
+                    areaStyle:{
+                        color:"yellow"
+                    },
+                    stack:"l" //堆叠图 
+                }
+            ],
+            label:{
+                show:true
+            }
+        };
+        echart.setOption(options);
+        //  常用在数据随着时间的变化趋势
+        // 闭包是什么—有什么应用—他的缺陷是什么—怎么解决缺陷—他是怎么回收的—垃圾回收讲一下—回收算法讲一下—标记清除法是怎么从根路径出发遍历对象的
+    </script>
+</body>
+</html>

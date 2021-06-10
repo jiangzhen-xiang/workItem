@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="./1.js" ></script> -->
+    <style>
+        /* .box{
+            width:100px;
+            height:100px;
+            background-color: aqua;
+        } */
+        .a{
+            width:300px;
+            /* height:30px; */
+            background-color: aqua;
+            padding:10px;
+        }
+        .b{
+            max-height:0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+        .a:hover .b{
+            max-height:var(--height);
+            color:yellow;
+        }
+        .c{
+            height:100px;
+            width:100px;
+            opacity:0;
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="box"></div> -->
+    <!-- <script src="https://www.baidu.com" ></script> -->
+    <div class="a">
+        函数的空间是的空间分开后发布的数据开发家阿福就立
+        <div class="b">
+            函数的空间是的空间分开后发布的数据开发家阿福就立刻回答
+            函数的空间是的空间分开后发布的数据开发家阿福就立刻回答
+            函数的空间是的空间分开后发布的数据开发家阿福就立刻回答
+            函数的空间是的空间分开后发布的数据开发家阿福就立刻回答
+            函数的空间是的空间分开后发布的数据开发家阿福就立刻回答
+            函数的空间是的空间分开后发布的数据开发家阿福就立刻回答
+            函数的空间是的空间分开后发布的数据开发家阿福就立刻回答
+        </div>
+    </div>
+    <div class="c"></div>
+    <script type="text/javaScript">
+        let ob=document.getElementsByClassName("b")[0];
+        let oc=document.getElementsByClassName("c")[0];
+        console.log(ob.scrollHeight);
+        ob.style.setProperty("--height",ob.scrollHeight+"px");
+        console.log(oc.scrollHeight);
+
+        // console.log(this);
+        // function sayhi(){
+        //     console.log("<script>");
+        // }
+        // sayhi();变量/作用域/内存/闭包/函数/正则/
+        /*多行注释*/
+        // let script = document.createElement('script');
+        // script.src="./1.js";
+        // document.body.appendChild(script);
+        // function test(){
+        //     msg="hi"
+        // }
+        // test();
+        // console.log(msg);
+        // let msg="hi";
+        // if(true){
+        //     console.log(msg);
+        //     let msg="hello";
+        //     // console.log(msg);
+        // }
+        // var a;
+        // let a="a";
+        // console.log(msg);
+    </script>
+    <script>
+        // let a;
+        // if(typeof a == 'undefined'){
+        //     let a = "b";
+        // }
+        // try{
+        //     console.log(a);
+        //     // let a="c";
+        // }catch(error){
+        //     console.log(error);
+        // }
+        // var arr=[6,7,8,9,10]
+        // for(var i=0;i<arr.length;i++){
+        //     setTimeout(function(){
+        //         console.log(i);
+        //     },0)
+        // }
+        // console.log(i);
+        // const obj=[1,2,3];
+        // obj[0]="c";
+        // let a=1;
+        // let b="2";
+        // let c=true;
+        // let d=undefined;
+        // let e=null;
+        // let f=Symbol("3");
+        // let g={a:"4"};
+        // let h=[1,2,3];
+        // let i=function(){
+        //     console.log(1);
+        // }
+        // console.log(typeof age);
+        // console.log(null===undefined);
+        // console.log(Number.MIN_VALUE);
+        // console.log(Number.MAX_VALUE);
+        // let obj={
+        //     a:"1",
+        // }
+        // console.log(isNaN(obj.valueOf()));
+        // let a=1;
+        // let b=2;
+        // function abc(a,b,c){
+        //     console.log(a);
+        //     console.log(b);
+        //     console.log(c);
+        //     return "c"
+        // }
+        // let t=abc`${a}+${b}`;
+// 看了太多了，好累啊，不想动了怎么办
+        // let s1=Symbol("a");
+        // let s2=Symbol("b");
+        // let s3=Symbol("c");
+        // let s4=Symbol("d");
+        // let obj={
+        //     [s1]:"a val",
+        //     name:"daneir"
+        // }
+        // obj[s1]="e val";
+        // // console.log();
+        // let obj1=Object.defineProperty(obj,s2,{value:"b val"});
+        // // console.log(obj1);
+        // let arr=Object.getOwnPropertyDescriptors(obj);
+        // let arr1=Reflect.ownKeys(obj);
+        // console.log(arr1);
+        // function abc(){
+        //     msg="hi"
+        // };
+        // abc();
+        // let msg=null;
+        // console.log(toString(msg));
+        // class Foo{
+        //     async *[Symbol.asyncIterator](){}
+        // }
+
+        // let f=new Foo();
+        // console.log(f[Symbol.asyncIterator]());
+
+        // let obj=new Object();
+        // console.log(obj.constructor);
+        // obj.name="hello"
+        // console.log(obj.hasOwnProperty("name"));
+        // console.log(obj.isPrototypeOf(Object));
+        // console.log(obj.toString());
+        // console.log(obj.toLocaleString());
+        // console.log(obj.valueOf());
+
+        // let s1="2";s1++;
+        // console.log(s1);
+        // let s2="z";s2++;
+        // console.log(s2);
+        // let s3=false;s3++;
+        // console.log(s3);
+        // let s4=1.1;s4--;
+        // console.log(s4);
+        // let obj={
+        //     valueOf(){
+        //         return -1;
+        //     }
+        // }
+        // console.log(obj.valueOf());
+        // obj++;
+        // console.log(obj);
+
+        // console.log(5-null);
+        // console.log(5-undefined);
+        // let num=0;
+        // for(const attr in window){
+        //     num++;
+        //     document.write("<p>"+num+":"+attr+"</p>")
+        // }
+
+        // for(const prop of [1,2,3,4,5]){
+        //     document.write("<p>"+prop+"</p>")
+        // }
+        
+// for(let i=1;i<10;i++){
+//     if(i%3==0){
+//         // break;
+//         continue;
+//     }
+//     console.log(i);
+// }
+// console.log(true==1);
+// let num=0;
+// outermost:
+// for(let i=0;i<10;i++){
+//     for(let j=0;j<10;j++){
+//         if(i==5&&j==5){
+//             continue outermost;
+//         }
+//         num++;
+//     }
+// }
+// console.log(num);
+
+// let obj={
+//     a:'b',
+//     b:'c',
+// }
+// with(obj){
+//     console.log(a);
+// }
+
+// function abc(a,b,c,d,e,f){
+//     console.log(a);
+//     console.log(b,c,d,e,f);
+//     console.log(arguments);
+// }
+// abc("1",2,3,4,5);
+
+// let obj=new Object();
+// obj.name="jim";
+// let obj1=obj;
+// // console.log(obj.name);
+// // obj1=new Object();
+// obj1.name="amy";
+// console.log(obj.name);
+
+// let n={a:[1,2,3]}
+// console.log(n instanceof Array );
+
+// function abc(){
+//     let a="nn";
+//     with(location){
+//         var b=href+a;
+//     }
+//     console.log(b);
+//     return b;
+
+// }
+// abc();
+
+// function add(n1,n2){
+//     var sum=n1+n2;
+//     return sum;
+// }
+// let result=add(3,7);
+// console.log(result);
+// console.log(sum);
+
+// const obj={
+//     a:"b"
+// };
+// Object.freeze(obj);//冻结对象不可修改
+// obj.a="c";
+// console.log(obj.a);
+// function Article(){
+//     this.title="dsdjks";
+// }
+// let a1=new Article();
+// let a2=new Article();
+// let a3=null;
+// console.log(typeof null);
+
+// console.log(Date.now());
+// console.log(new Date("2020/05/09").getTime());
+// console.log(new Date(2020,04,09).getTime());
+// console.log(Date.parse("2005,7,8"));
+// console.log(new Date(Date.UTC(2020,4,9,17,55,55)));
+// console.log(Date.UTC(2005,7,8));//时区不同
+// console.log(Date.now());
+// console.log(new Date().toLocaleString());
+// console.log(new Date().toString());
+// console.log(new Date().toLocaleString());
+// console.log(new Date().toDateString());
+// console.log(new Date().toLocaleDateString());
+// console.log(new Date().toTimeString());
+// console.log(new Date().toLocaleTimeString());
+// console.log(new Date().toUTCString());
+// console.log(new Date().toGMTString());
+// console.log(new Date().toString());
+// 两个日期可以直接比较，>和<自动调用日期对象的valueof方法
+// let t1=new Date("2020/05/09");
+// let t2=new Date(2020,05,09);
+// console.log(t1<t2);
+// console.log(t1.valueOf());
+// let reg=/at/g;
+// let reg1=/[bc]at/i;
+// let reg2=/at/gi;
+// let reg3=/\[bc\]at/g;
+// console.log(reg.test("gjklsfdat"));
+// console.log(reg1.test("gjklsfcbsat"));
+// let res=reg2.exec("gjat")
+// console.log(res[0]);
+// // res=Array.from(res);
+// // console.log(res);
+// console.log(reg3.test("gj[bc]at"));
+// console.log(32/9);
+
+// let test='.cat, bat, dat, eat';
+// let res=/.at/g;
+// let msg=res.exec(test);
+// console.log(msg);
+// console.log(msg.index);
+// console.log(msg[0]);
+// console.log(res.lastIndex);
+
+// msg=res.exec(test);
+// console.log(msg);
+// console.log(msg.index);
+// console.log(msg[0]);
+// console.log(res.lastIndex);
+
+// console.log(res.toString());
+// console.log(res.toLocaleString());
+// console.log(res.valueOf());
+
+// if(res.test(test)){
+
+//     console.log(RegExp.input);
+//     console.log(RegExp.leftContext);
+//     console.log(RegExp.rightContext);
+//     console.log(RegExp.lastMatch);
+//     console.log(RegExp.lastParen);
+// }
+
+// let flag=new Boolean(false);
+// let str=new String("hi")
+// let res=flag&&true;
+// console.log(flag,str);
+
+// 抛出错误
+// if(true){
+//     throw new TypeError('need bing to a function')
+// }
+
+// function abc(){
+//     console.log(typeof arguments);
+// }
+// abc("a")
+
+// call改变函数调用时的上下文，及其原理  call的作用，执行调用call的函数，并将调用call的函数的this指向call的第一个参数，并传参
+function Abc(){
+    this.name="zhangsan";
+    this.getname=function(a="hello"){
+        console.log(this.name,a);
+    }
+};
+// let a1=new Abc();
+// a1.getname();
+// let obj={name:"lisi"}
+// a1.getname.call(obj,"hi");
+
+Function.prototype.mycall=function(thisArg,...args){
+    var thisArg = thisArg || window;
+    console.log(this);//this指代调用mycall的函数
+    thisArg.fn=this;
+    let result = thisArg.fn(...args);
+    console.log(thisArg);
+    delete thisArg.fn;
+    return result;
+}
+// a1.getname.mycall(obj,"hi");
+
+Function.prototype.myapply=function(thisArg,arg){
+    var thisArg=thisArg||window;
+    thisArg.fn=this;
+    var res=thisArg.fn(...arg);
+    delete thisArg.fn;
+    return res;
+}
+// a1.getname.myapply(obj,["hi"])
+
+// var bar=function(){
+//     this.x="huhu"
+//     this.getx=function(){
+//         console.log(this.x);
+//     }
+// }
+// let a2=new bar();
+// var hoo={
+//     x:"haha"
+// }
+// a2.getx();
+// a2.getx.bind(hoo)();
+
+// var c=function(){console.log(this.x);}
+// c();
+var o={x:"haha"}
+var o1={x:"huhu"}
+// c.bind(o).bind(o1)();
+Function.prototype.myBind=function(){
+    var _this=this; //调用该方法的函数
+    var context=[].shift.call(arguments);
+    var args=[].slice.call(arguments);
+    return function(){
+        _this.apply(context,[].concat.call(args,[].slice,call(arguments)));
+    }
+}
+// console.log([].slice.call([1,2,3]));
+
+//push方法的底层原理 可以尾部一次增加多个 返回数组长度
+         
+// let arr=[];
+// let n=arr.pushfn(4);
+// console.log(arr,n);]
+// arr.length=arr.length-1;
+// var n=arr.pop();
+// console.log(arr,n);
+// pop方法的底层原理 每次只能尾部删除一个 返回删除的那一项
+Array.prototype.popfn=function(){
+    var n=this.length;
+    var lastItem=this[n-1];
+    if(n>=1){
+        this.length=n-1;  
+        return lastItem;
+    }
+}
+// let arr1=[3,4,5];
+// var n=arr1.popfn();
+// var n=arr1.popfn();
+// var n=arr1.popfn();
+// var n=arr1.popfn();
+// console.log(arr1,n);
+//shift方法底层原理 每次只能头部删除一个 返回删除的那一项
+Array.prototype.shiftfn=function(){
+    // console.log(this);
+    var n=this.length;
+    var firstItem=this[0];
+    for(let i=0;i<n;i++){
+        this[i]=this[i+1];
+    }
+    if(n>=1){
+        this.length=n-1;
+        return firstItem;
+    }
+}
+let a=[].slice.call([1,2,3]);
+// console.log(a);
+
+// let arr1=[3,4,5];
+// var n=arr1.shiftfn();
+// var n=arr1.shiftfn();
+// var n=arr1.shiftfn();
+// var n=arr1.shiftfn();
+// console.log(arr1,n);
+
+//unshift方法的底层原理 每次可以头部增加多个 返回数组的长度
+Array.prototype.unshiftfn=function(){
+    let arr=[...arguments,...this];
+    for(let i=0;i<arr.length;i++){
+        this[i]=arr[i];
+    }
+    // let n=arguments.length;
+    // for(let j=this.length+n;j>n;j--){
+    //     this[j-1]=this[j-1-n];
+    // }
+    // for(let i=0;i<arguments.length;i++){
+    //     this[i]=arguments[i];
+    // }
+    return this.length;
+}
+// let arr1=[3,4,5];
+// var n=arr1.unshiftfn(1,2,789,9,0);
+// console.log(arr1,n);
+
+
+//forEach方法，遍历数组 没有返回值
+Array.prototype.forEachfn=function(fn){
+    for(let i=0;i<this.length;i++){
+        fn(this[i],i);
+    }
+}
+
+// let arr1=[3,4,5,6,7];
+// arr1.forEachfn((item,index)=>{
+//     console.log(item,index);
+// })
+
+//map方法底层原理 遍历数组 返回新数组
+Array.prototype.mapfn=function(fn){
+    let res=null;
+    let arr=[];
+    for(let i=0;i<this.length;i++){
+        res=fn(this[i],i);
+        arr[i]=res;
+    }
+    return arr;
+}
+// let arr1=[3,4,5,6,7];
+// let arr2=arr1.map((item,index)=>{
+//     console.log(item,index);
+//     return item*5
+// })
+// console.log(arr2);
+
+// filter方法底层原理 遍历数组 返回符合条件的新数组
+Array.prototype.filterfn=function(fn){
+    let arr=[];
+    let j=-1;
+    for(let i=0;i<this.length;i++){
+        if(fn(this[i],i)){
+            j++;
+            arr[j]=this[i];
+        }
+    }
+    return arr;
+}
+let arr1=[1,2,3,4,5];
+// let arr2=arr1.filterfn((item,index)=>{
+//     return item>5;
+// })
+// console.log(arr2);
+
+
+//reduce方法底层原理
+Array.prototype.reducefn=function(fn,init){
+    let res=init;
+    var i=0;
+    if(res===undefined){
+        res=this[0];
+        i=1;
+    }
+    for(let i=0;i<this.length;i++){
+        res=fn(init,this[i],i);
+        init=res;
+    }
+    return res;
+}
+// let arr2=arr1.reducefn((prev,next)=>{
+//     console.log(prev,next);
+//     // prev.indexOf(next) == -1 && prev.push(next)
+//     // prev.push(next)
+//     return prev+next;
+// },"0")
+// console.log(arr2);
+
+
+// 手动模拟new
+function mynew(fn,...args){
+    const obj={};
+    obj.__proto__=fn.prototype;
+    let result=fn.call(obj,...args);
+    return typeof result == "object" ? result : obj;
+}
+function Sa(){
+    this.name="jj";
+    this.getname=function(){
+        console.log(this.name);
+    };
+}
+let s1=mynew(Sa);
+// console.log(s1);
+
+let arrn=[1,2,3,4,5];
+let arrm=arrn.slice(1,3)
+// console.log(arrm);
+// 没有在对象上调用，则this指向window
+function foo(){
+    console.log(this.aa);
+}
+var ff={
+    aa:"haha",
+    foo:foo
+}
+
+var baa=ff.foo();
+var aa="global";
+// baa();
+
+
+
+var ff={
+    aa:"haha",
+    foo(){
+        console.log(this.aa);
+    }
+}
+var aa="global";
+ff.foo();
+setTimeout(ff.foo,1000)
+
+// call函数实现：改变this指向，执行函数，传入参数
+// Function.prototype.mycal=function(obj,...arg){
+//     var obj=obj||window;
+//     obj.fn=this;
+//     let result=obj.fn(...arg);
+//     delete obj.fn;
+//     return result;
+// }
+// let obj={
+//     name:"jj",
+// }
+// function Ac(){
+//     this.name="ll";
+//     this.getn=function(){
+//         console.log(this.name);
+//     }
+// }
+// let p1=new Ac();
+// p1.getn();
+// p1.getn.mycal(obj);
+
+
+
+
+
+// 找到指向，存在对象则指向对象否则指向window；
+// 找到要执行的函数,并绑定到对象中
+// 传入参数并执行函数，拿到函数返回值
+// 删除对象上绑定的函数
+// return结果
+
+Function.prototype.myCall=function(Arg,...args){
+    console.log(this);
+    var Arg = Arg || window;
+    Arg.fn=this;
+    let result = Arg.fn(...args);
+    
+}
+
+function Ca(){
+    this.name="cc";
+    this.getName=function(){
+        console.log(this.name);
+        return "hello"
+    }
+}
+
+let c1=new Ca();
+
+let obb={
+    name:"yy"
+}
+
+var name="jj"
+
+console.log(c1);
+let c=c1.getName.call(obb)
+console.log(obb);
+
+
+
+
+
+
+
+
+
+
+
+
+
+function newnew(fn,...arg){
+    var obj={};
+    obj.__proto__=fn.prototype;
+    let result=fn.call(obj,...arg);
+    return typeof result == "object" ? result : obj;
+}
+function Gou(){
+    this.name="kk";
+    this.getname=function(){
+        console.log(this.name);
+    }
+}
+let n1=newnew(Gou)
+// let n2=newnew(Gou)
+// console.log(n1);
+// n1.name="hh";
+// console.log(n1);
+// console.log(n2);
+// console.log(99===0x63);
+
+
+// Function.prototype.mycal=function(Arg,...args){
+//     var Arg=Arg||window;
+//     Arg.fn=this;
+//     let result=Arg.fn(...args);
+//     delete Arg.fn;
+//     return result;
+// }
+// function Ha(){
+//     this.name="jdj";
+//     this.getname=function(){
+//         console.log(this.name);
+//     }
+// }
+// let h1=new Ha();
+// console.log(h1);
+// let obj1={
+//     name:"jj"
+// }
+// h1.getname.mycal(obj1);
+
+// 如何让判断方法所属对象
+// 结论：不可枚举的对象属性为灰色
+console.log({}.hasOwnProperty);
+console.log(Object.hasOwnProperty);
+console.log({}.defineProperties);
+console.log(Object.defineProperties);
+var obje={
+    name:"jj",
+    age:12,
+    sex:undefined,
+    hasOwnProperty:function(){
+        return false;
+    }
+}
+console.log(obje.__proto__);
+// console.log(
+//     Object.defineProperty(obj,"key",{value:"haha",enumerable:true})
+// );
+// console.log(
+//     Object.getOwnPropertyDescriptor(obj,"key")
+// );
+// console.log(
+//     Object.getOwnPropertyDescriptor(obj,"name")
+// );
+// console.log(
+//     obje.hasOwnProperty("sex"),
+//     obje.hasOwnProperty("class"),
+//     obje.sex,obje.class
+// );
+// console.log(
+//     {}.hasOwnProperty.call(obje,"name")
+// );
+let obja=new Object();
+console.log(obja);
+
+var arra=[1,2,3];
+arra.length=6;
+console.log(arra);
+arra[5]=undefined;
+console.log(5 in arra);
+arra.length=2;
+arra[2]=undefined;
+console.log(2 in arra);
+
+
+/*
+5.24开始，5.26早上就没了？70
+小米10s 2999 骁龙870 ✅ 2400*1080 4*128 1亿+2000万像素 4760毫安 0.8小时 208克 6.67英寸
+小米11 3799 骁龙888 
+honor9i 1499 麒麟659 2280*1080 8*256 1300万+1600万 3000毫安 2.5小时 152克 5.84英寸
+6.10日晚22点-6.11早8点
+9点到车管所，体检+照相一个小时，出驾照一个小时，11点办理完成
+一点到家，
+6.13日下午到郑州
+6.14下午回北京
+
+realme q3 1399 5000毫安 骁龙750
+realme q3 pro 1799 天玑1100 
+vivo iQOO Z3 1799 骁龙768 
+realme GT neo 1999 4500毫安 天玑1200
+红米k40 2199 骁龙870 
+小米11青春版 2299 骁龙780
+
+
+主要考量的几个点：价格、电池、内存、外观，
+麒麟659 每天带的东西都换了几波了，送不出去啊
+红米k40 pro 掉电太快 pass
+小米10s 2999 不足在于8.96mm的厚度和208g的重量
+IQOO Neo5 活力版 2499
+reno5P+
+findx3
+一加9p
+接单接到手软
+
+js引擎：将我们所写的代码编译成机器可以识别的语言
+js引擎组成部分：编译器、解释器、JIT工具
+编译器：将代码编译成抽象语法树，语法树在转换成字节码；
+解释器：解释并执行字节码；
+JIT工具：将抽象语法树或字节码转换成本地代码，负责垃圾回收和收集引擎中的信息，帮助改善引擎的性能和功效
+抽象语法树：以树状的形式表示编程语言的语法结构；
+字节码：源代码经过编译后，需要转译后成为机器码的中间代码
+
+
+new在构建过程中发生了什么
+1.生成新的对象
+2.新对象的__proto__属性指向其构造函数的原型
+3.绑定this，将构造函数的作用域赋值给新的对象
+4.返回新对象
+
+明天讲两个内容：
+        1:this指向问题 call原理
+        2:字符串换行问题 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+599229
+根据js所在的运行环境，有时候需要根据浏览器使用js引擎来采取不同的性能优化策略，谷歌是最流行的浏览器，使用v8js引擎，v8在将解释后的js代码编译成机器码时，会利用隐藏类，运行期间，v8引擎会将创建的对象和隐藏类关联起来，能够共享相同隐藏类的对象性能会更好
+在内存有限的设备上，或者在函数会被调用多次的情况下，内存泄漏是个大问题。js中的内存泄漏大部分都是由不合理的引用导致的。意外声明全局变量是最常见也是最容易修复的内存泄漏问题
+所有对象在布尔值表达式中都会被转化为true
+这几天突然好闲啊，什么事也不做
+引用值是或引用对象是某个特定引用类型的实例
+
+*/
+    </script>
+    <noscript>
+        <p>该浏览器不支持javascript!</p>
+    </noscript>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+    <script src="./jquery.min.js"></script>
+</head>
+<body>
+    <!-- 散点图 -->
+    <div id="root" style="width:600px;height:400px;margin:100px auto;"></div>
+    <script>
+
+        let root = document.querySelector("#root");
+        let chart=echarts.init(root);
+        chart.showLoading(); //获取数据之前显示加载
+        var data=[];
+        $.get('./json/data.json',function(res){
+            // console.log(res);
+            data=res;
+            let options={
+                xAxis:{
+                    type:"value",
+                    scale:true
+                },
+                yAxis:{
+                    type:"value",
+                    scale:true
+                },
+                series:[
+                    {
+                        // type:"scatter",
+                        type:"effectScatter", //涟漪动画效果
+                        showEffectOn:"emphasis", //控制鼠标移入才显示涟漪动画，render一直显示涟漪动画
+                        rippleEffect:{
+                            scale:10, //涟漪图的大小
+                        },
+                        data:(function(){
+                            let arr=[];
+                            if(data.length!=0){
+                                data.forEach(item=>{
+                                    arr.push([item.height,item.weight])
+                                });
+                            }
+                            return arr;
+                        })(),
+                        symbolSize:function(arg){  //控制大小
+                            let bmi=arg[1]/(arg[0]*arg[0])*10000;
+                            // console.log(bmi);
+                            if(bmi>28){
+                                return 15;
+                            }else if(bmi<18){
+                                return 4;
+                            }else{
+                                return 8;
+                            }
+                        },
+                        itemStyle:{  //控制颜色
+                            color:function(arg){
+                                let { value }=arg;
+                                // console.log(value);
+                                let bmi=value[1]/(value[0]*value[0])*10000;
+                                if(bmi>28){
+                                    return "red";
+                                }else if(bmi<18){
+                                    return "gray";
+                                }else{
+                                    return "green";
+                                }
+                            }
+                        },
+    
+                    }
+                ]
+            };
+            chart.setOption(options);
+            chart.hideLoading(); //获取数据之后隐藏加载
+        })
+        // 动态改变options时，只改变变化的部分就可以了，新旧option之间是相互整合的关系
+    </script>
+</body>
+</html>

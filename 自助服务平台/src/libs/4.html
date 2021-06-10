@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root" >
+        <div>{{msg}}</div>
+        <p>
+            <span>{{name}}-{{msg}}</span>
+        </p>
+    </div>
+    <script>
+        // 将模板和数据结合生成真正的html标签
+        function compiler(template,data){
+            let childN=template.childNodes;
+            for(let i=0;i<childN.length;i++){
+                let type=childN[i].nodeType;
+                if(type===1){
+                    compiler(childN[i],data);
+                }else if(type===3){
+                    let value=childN[i].nodeValue;
+                    value=value.replace(/\{\{(.+?)\}\}/g,function(_,con){
+                        con=con.trim();
+                        let result=data[con];
+                        return result;
+                    })
+                    childN[i].nodeValue=value;
+                }
+            }
+        }
+        function MYVue(options){
+            // 内部数据使用下划线开头，只读数据使用$开头
+            this._el=options.el;
+            this._data=options.data;
+            this.$el=this._templateDOM=document.querySelector(this._el);
+            this._parent=this._templateDOM.parentNode;
+            this.render();
+        }
+        // 模板结合数据得到真正的DOM元素并加到页面中
+        MYVue.prototype.render=function(){
+            this.compiler();
+        }
+        // 将模板与数据结合得到真正的DOM元素
+        MYVue.prototype.compiler=function(){
+            let realTemplateDOM=this._templateDOM.cloneNode(true)
+            compiler(realTemplateDOM,this._data);
+            console.log(realTemplateDOM,this._data);
+            this.update(realTemplateDOM);
+        }
+        // 将结合后的html元素加到页面中
+        MYVue.prototype.update=function(real){
+            this._parent.replaceChild(real,document.querySelector('#root'))
+        }
+
+        let app=new MYVue({
+            el:"#root",
+            data:{
+                msg:"hello",
+                name:"jj"
+            }
+        })
+        console.log(app);
+        // 真正的VUE中：每次数据的变化会生成一个新的虚拟DOM，这个虚拟DOM会判断页面当中的DOM是否被渲染，如果没有被渲染，就会把这个虚拟DOM转换成真正的DOM，放到页面当中去；但是如果页面当中的DOM已经被渲染了，那么它只是用虚拟DOM去更新里面的文本等数据
+    </script>
+</body>
+</html>

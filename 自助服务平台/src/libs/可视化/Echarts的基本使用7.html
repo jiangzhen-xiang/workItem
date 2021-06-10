@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+</head>
+<body>
+    <!-- 仪表盘 -->
+    <div id="root" style="width:600px;height:400px;"></div>
+    <script>
+        let root = document.querySelector("#root");
+        let echart=echarts.init(root);
+        let options={
+            series:[
+                {
+                    type:'gauge',
+                    data:[ //每一个对象代表一个指针
+                        {
+                            value:97,
+                            itemStyle:{ //控制指针的样式
+                                color:'pink'
+                            }
+                        },
+                        {
+                            value:47,
+                            itemStyle:{ 
+                                color:'green'
+                            },
+                        }
+                    ],
+                    min:40, //最小值
+                    max:120, //最大值
+                }
+            ]
+        }
+        echart.setOption(options);
+    // bar line pie map gauge radar scatter
+    </script>
+</body>
+</html>

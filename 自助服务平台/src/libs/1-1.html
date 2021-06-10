@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-html="msg"></div>
+        <div ref="dd"></div>
+        <div><pre>{{msg1}}</pre></div>
+        <div style="white-space:pre">{{msg1}}</div>
+        <div style="white-space:pre-line">{{msg1}}</div>
+    </div>
+
+
+    <script>
+        let app = new Vue({
+            el:"#root",
+            data:{
+                msg:"你好<br>王红",
+                msg1:"你好\r程悦",
+            },
+            mounted(){
+                this.$refs.dd.innerHTML=this.msg;
+                alert("你好\n程悦")
+            }
+        })
+
+        // v-html与innerHTML可以识别“<br>”,但不能识别"\n",且只能识别单个空格
+        // <pre>{{msg1}}</pre>可以识别"\n",但不能识别“<br>”,且可以识别多个空格
+        // <div style="white-space:pre">{{msg1}}</div>可以识别"\n",但不能识别“<br>”，且可以识别多个空格
+        // <div style="white-space:pre-line">{{msg1}}</div>可以识别"\n",但不能识别“<br>”，且只能识别单个空格
+        // alert可以识别"\n""\r",但不能识别“<br>”，且可以识别多个空格
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 找到指向，存在对象则指向对象否则指向window；
+// 找到要执行的函数,并绑定到对象中
+// 传入参数并执行函数，拿到函数返回值
+// 删除对象上绑定的函数
+// return结果
+
+Function.prototype.myCall=function(Arg,...args){
+    console.log(this);
+    var Arg = Arg || window;
+    Arg.fn=this;
+    let result = Arg.fn(...args);
+    // delete Arg.fn;
+    return result;
+}
+
+function Ca(){
+    this.name="cc";
+    this.getName=function(){
+        console.log(this.name);
+        return "hello"
+    }
+}
+
+let c1=new Ca();
+
+let obb={
+    name:"yy"
+}
+
+var name="jj"
+
+console.log(c1);
+
+let c=c1.getName.call(obb)
+
+console.log(obb);
+console.log(c,111);
+
+let d=c1.getName.call();
+console.log(d,222);
+
+let e=c1.getName.myCall();
+console.log(e,333);
+
+let f=c1.getName.myCall(obb);
+console.log(f,444);
+console.log(obb.fn);
+
+
+// 15天时间学习vue原理部分，完成一个vue项目
+// 15天时间学习typeScript部分，完成一个vue的项目
+// 一个月时间学习react，完成一个react项目
+// 一个月时间完成js学习包括ES6，学习一些原理以及简单的算法：设计模式/不常用的排序方法
+// 准备一周面试题，准备简历，面试冲18
+
+
+
+    </script>
+</body>
+</html>

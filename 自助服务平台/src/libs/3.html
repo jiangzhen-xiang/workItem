@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root" >
+        <div>{{msg}}</div>
+        <p>
+            <span>{{name}}-{{msg}}</span>
+        </p>
+    </div>
+    <script> 
+    // 拿到模板，拿到数据data，将数据与模板结合得到html元素，放到页面中
+    let templateRoot=document.querySelector("#root"); //元素拿到，则模板拿到
+    // 利用模板克隆一个将要渲染页面的HTML标签
+    let templateClone=templateRoot.cloneNode(true); 
+    function Abc(){
+        this.msg="hello",
+        this.name="jj"
+    };
+    let data=new Abc(); //通过构造函数，生成数据
+    // String(templateRoot).replace(/\{\{msg\}\}/g,data.msg)
+    // console.log(templateRoot);
+    // 将数据放到模板中一般使用递归，此案例中模板是DOM元素，在vue源码中将DOM元素=》转换成字符串模板=》抽象语法树=》转换成虚拟DOM=》真正的DOM
+    // childNodes:所有的子节点，包括文本节点
+    // nodeType:节点类型 1.元素节点 3.文本节点
+    // nodeValue：文本节点的值 
+    // nodeName:元素节点对应元素名称，文本节点返回#text
+    // text.replace("正则"，"回调函数"),每匹配成功一次，就会调用一次回调函数;回调函数的第一个参数是匹配到的字符串,第二个参数是双花括号里面的东西，返回替换后的新值
+    // DOM是引用类型
+    // 拷贝DOM节点 DOM.cloneNode(true)
+    // DOM.replaceChild(newnode,oldnode)新节点替换旧节点
+    function compiler(template,data){
+        let childN=template.childNodes;
+        for(let i=0;i<childN.length;i++){
+            if(childN[i].nodeType===3){
+                let txt=childN[i].nodeValue;
+                txt=txt.replace(/\{\{(.+?)\}\}/g,(_,con)=>{
+                    con.trim();//双花括号里面的东西
+                    let value=data[con];
+                    return value; //用这个值替换
+                })
+                // txt和DOM没有关系
+                childN[i].nodeValue=txt;
+            }else if(childN[i].nodeType===1){
+                compiler(childN[i],data);
+            }
+        }
+    }
+    compiler(templateClone,data);
+
+    // console.log(templateRoot,templateClone);//不能直接在模板上改，否则模板就没了，无法根据data中值的变化，响应式的渲染页面。需要我们拷贝一份模板再改。
+
+    // 将结合后渲染好的的html标签与页面模板替换
+    root.parentNode.replaceChild(templateClone,root)
+    // console.log(templateRoot,templateClone);
+
+    // 上述模拟代码与vue真实原理的区别：1.vue使用的是虚拟DOM，2.只考虑到一层属性的情况，3.代码没有整合
+    // 模板树结构 把数据和模版结合起来生成DOM结构 数据改变=》模板不变=》DOM改变=》把DOM加到页面中
+    // 模板要一直在内存中，因为他是渲染的基础，我们要做的是把模板和数据结合起来去生成DOM结构
+    // vue解析步骤：拿到模版=》拿到数据=》数据与模板结合得到HTML元素=》放到页面中
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    //9500+5000+1700=16200-1000-2700=12500+9500-7000
+    // 3578.77 这周换驾照/去医院/理发
+    // “京彩平台”开启时间为5日0时。在京个人消费者（以手机GPS定位为准）无需登录，即可在中国银行手机银行App、中国工商银行手机银行App中通过点击活动页面或搜索“京彩奋斗者”“北京数字人民币”等关键词进入“京彩平台”预约报名。报名截止时间为7日23时59分。报名结束后，经公证处摇号系统抽签，中签消费者可根据中签短信指引，下载数字人民币App并开通个人数字钱包，获得数字人民币“京彩”红包。“京彩”红包可在6月11日9时至6月20日23时59分内在指定商户消费使用，商户名单可在“京彩平台”查阅。
+    // 
+    // 8:36-14:37
+    // function addColon(num){
+    //     let result="";
+    //     // for(let n=num.length-1;n>=0;n--){
+    //     //     result+=num[(num.length-n-1)];
+    //     //     console.log(num[(num.length-n-1)]);
+    //     //     if((num.length-n-1)%2!==0&&n!=0){
+    //     //         result+=":";
+    //     //         console.log(result);
+           
+    //     //     }
+    //     // }
+    //     for(let i=0;i<num.length;i++){
+    //         result+=num.charAt(i);
+    //         if(i%2!=0&&i!=num.length-1){
+    //             result+=":";
+    //         }
+    //     }
+    //     return result;
+    // }
+    // console.log(addColon("123456"))
+    </script>
+</body>
+</html>

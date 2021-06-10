@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+    <script src="./jquery.min.js"></script>
+</head>
+<body>
+    <!-- 地图 -->
+    <!-- <div>aaa</div> -->
+    <div id="root" style="width:500px;height:500px;border:1px solid #f00" ></div>
+    <script>
+        let root = document.querySelector("#root");
+        let echart=echarts.init(root);
+        var airData = [
+            { name: '北京', value: 39.92 },
+            { name: '天津', value: 39.13 },
+            { name: '上海', value: 31.22 },
+            { name: '重庆', value: 66 },
+            { name: '河北', value: 147 },
+            { name: '河南', value: 113 },
+            { name: '云南', value: 25.04 },
+            { name: '辽宁', value: 50 },
+            { name: '黑龙江', value: 114 },
+            { name: '湖南', value: 175 },
+            { name: '安徽', value: 117 },
+            { name: '山东', value: 92 },
+            { name: '新疆', value: 84 },
+            { name: '江苏', value: 67 },
+            { name: '浙江', value: 84 },
+            { name: '江西', value: 96 },
+            { name: '湖北', value: 273 },
+            { name: '广西', value: 59 },
+            { name: '甘肃', value: 99 },
+            { name: '山西', value: 39 },
+            { name: '内蒙古', value: 58 },
+            { name: '陕西', value: 61 },
+            { name: '吉林', value: 51 },
+            { name: '福建', value: 29 },
+            { name: '贵州', value: 71 },
+            { name: '广东', value: 38 },
+            { name: '青海', value: 57 },
+            { name: '西藏', value: 24 },
+            { name: '四川', value: 58 },
+            { name: '宁夏', value: 52 },
+            { name: '海南', value: 54 },
+            { name: '台湾', value: 88 },
+            { name: '香港', value: 66 },
+            { name: '澳门', value: 77 },
+            { name: '南海诸岛', value: 55 }
+        ];
+        var scatterData=[
+            {
+                value:[113.665412, 34.757975]
+            }
+        ]
+
+        // console.log($.get);
+        $.get({
+            url:"json/map/china.json",
+            success:function(ret){
+                console.log(ret);
+                echarts.registerMap("chinaMap",ret);
+                let options={
+                    geo:{
+                        type:"map",
+                        map:"chinaMap", //需要依赖之前注册的数据
+                        roam:true, //设置缩放和允许拖动的效果
+                        label:{
+                            show:true, //显示名称
+                        },
+                        zoom:1.2, //设置初始缩放比例
+                        // center:[113.665412, 34.757975],//设置中心点坐标
+                    },
+                    series:[
+                        {
+                            data:airData,
+                            geoIndex:0, //将空气质量数据与第0个geo关联起来
+                            type:"map", 
+                            
+                        },
+                        {
+                            data:scatterData, //配置散点坐标数据
+                            type:"effectScatter", //配置散点图类型
+                            coordinateSystem:"geo",//使散点图使用地图的坐标
+                            rippleEffect:{
+                                scale:10
+                            }
+                        }
+                    ],
+                    visualMap:{
+                        min:0, //控制最小值
+                        max:300,//控制最大 值
+                        inRange:{
+                            color:['white','red']  //控制颜色渐变的范围
+                        },
+                        calculable:true  //出现滑块的效果
+                    }
+                }
+                echart.setOption(options)
+            },
+        })
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../node_modules/vue/dist/vue.min.js"></script>
+<body>
+    <div id="root">
+        <p v-html="msg"></p>
+        <p ref="pp"></p>
+        <p><pre>{{msg1}}</pre></p>
+        <div style="white-space: pre;" >{{msg1}}</div>
+        <div style="white-space: pre-line;" >{{msg1}}</div>
+        <p>{{msg1}}</p>
+    </div>
+
+
+    <!-- call函数 
+    <p v-html="msg"></p>和innerHTML可以识别<br>，但是只能实现一个空格；
+    <pre>{{msg1}}</pre>可以识别"\n",可以识别很多空格,字体异变；
+    <div style="white-space: pre;" >{{msg1}}</div>可以识别"\n",可以识别很多空格
+    <div style="white-space: pre-line;" >{{msg1}}</div>可以识别"\n",但是只能实现一个空格；
+
+    -->
+    <script>
+        let app=new Vue({
+            el:"#root",
+            data:{
+                msg:"你好<br>王\r红",
+                msg1:"你好\n程\r悦"
+            },
+            mounted(){
+                this.$refs.pp.innerHTML=this.msg;
+                alert(this.msg1)
+            }
+        })
+
+
+
+
+
+
+
+
+
+        /*
+            1.有对象时指向对象，没有对象时指向window；
+            2.找到要执行的函数，绑定到对象上,并返回值；
+            3.删除绑定的函数
+        */
+        function Abc(){
+            this.name="jj";
+            this.getName=function(){
+                console.log(this.name);
+                return "hello"
+            }
+        }
+        let a1=new Abc();
+        a1.getName();
+        let obj={
+            name:"cc",
+            // getName:function(){
+            //     console.log(this.name);
+            // }
+        }
+        var name="kk";
+
+        let aa=a1.getName.call(obj);
+        console.log(aa,111);
+        console.log(obj);
+        a1.getName.call();
+
+
+        Function.prototype.mycall=function(Arg,...args){
+            console.log(this);
+            var Arg=Arg || window;
+            Arg.fn=this;
+            let result=Arg.fn(...args);
+            delete Arg.fn;
+            return result;
+        }
+
+        let a2=a1.getName.mycall(obj);
+        console.log(a2);
+        console.log(obj);
+
+
+
+    </script>
+</body>
+</html>

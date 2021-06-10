@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <!-- 
+        周一：调整租户查询页面，学习vue
+        周二：学习vue解析代码步骤模拟
+        周三：调整资源查询页面，学习vue
+        周四：调整资源查询页面，学习vue
+    -->
+    <!-- 创建模板 -->
+    <div id="root" >
+        <div>{{ msg }}</div>
+    </div>
+    <script>
+        console.log(root);
+
+        // 创建实例
+        let app=new Vue({
+            el:"#root",
+            data:{
+                msg:"hello"
+            }
+        })
+        // 挂载，在vue.js中实现
+
+
+        // 数据驱动模型 vue执行流程：获取模版，获取vue构造函数中的数据，得到解析后完整的标签
+        // vue利用我们写的模板，和提供的数据生成html标签，替换到页面放置模板的位置（整个模板都替换掉）
+        console.log(root);
+        
+        // 
+
+
+
+
+
+        /*
+js引擎：将我们所写的代码编译成机器可以识别的语言
+js引擎组成部分：编译器、解释器、JIT工具
+编译器：将代码编译成抽象语法树，语法树在转换成字节码；
+解释器：解释并执行字节码；
+JIT工具：将抽象语法树或字节码转换成本地代码，负责垃圾回收和收集引擎中的信息，帮助改善引擎的性能和功效
+抽象语法树：以树状的形式表示编程语言的语法结构；
+字节码：源代码经过编译后，需要转译后成为机器码的中间代码
+
+        
+new在构建过程中发生了什么
+1.生成新的对象
+2.新对象的__proto__属性指向其构造函数的原型
+3.绑定this，将构造函数的作用域赋值给新的对象
+4.返回新对象
+手动模拟new
+function mynew(fn,...arg){
+    let obj={};
+    obj.__proto__=fn.prototype;
+    let result=fn.call(obj,...arg);
+    return typeof result == "object" ? result : obj;
+}
+
+
+vue和react都是mvvm的思想
+live server 不刷新页面，数据改变自动更新
+1.编写页面模版
+2.创建vue实例
+3.把vue实例挂载到页面当中
+
+
+处理文本换行的几种方法
+1.使用v-html=“上一行文本<br>下一行文本”；
+2.使用innerHTML:DOM.innerHTML="上一行文本<br>下一行文本";
+3.使用pre标签，配合\n:<pre>上一行文本\n下一行文本</pre>;
+4.在行内样式中加入 style="white-space:pre"，可识别换行符\n,也可识别多个空格       
+  在行内样式中加入 style="white-space:pre-line"可识别换行符\n,可识别单个空格      
+
+一栋400平的三层大别墅，周围5米远的院墙围栏
+*/
+    </script>
+</body>
+</html>

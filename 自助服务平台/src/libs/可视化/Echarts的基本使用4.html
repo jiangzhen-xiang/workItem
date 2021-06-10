@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+    <script src="./jj.js"></script>
+</head>
+<body>
+    <!-- 饼图 -->
+    <div id="root" style="width:600px;height:400px;margin:100px auto;"></div>
+    <script>
+        let root = document.querySelector("#root");
+        let echart=echarts.init(root,'jj');
+        let data=[
+            {name:"淘宝",value:11233,emphasis:{itemStyle:{color:'red'}},label:{color:'green'}},//empahsis选中后高亮的样式
+            {name:"京东",value:22834},
+            {name:"唯品会",value:6789},
+            {name:"聚美优品",value:3477},
+            {name:"小米有品",value:14200},
+        ]
+        let options={
+            title:{
+                text:'饼图',
+                textStyle:{
+                    color:'red'
+                }
+            },
+            color:['red','green','yellow','gray','blue'],//全局调色盘，会覆盖主题调色盘
+            series:[
+                {
+                    data:data,
+                    type:"pie",
+                    label:{
+                        show:true, //显示文字
+                        formatter:function(arg){
+                            let {name,value,percent}=arg;
+                            // console.log(arg);
+                            return name+"花费"+value+",\n占比"+percent+"%";
+                        }, //决定文字显示的内容
+                    },
+                    // radius:'20%',//饼图的半径
+                    // radius:['50%','60%'] //设置成圆环
+                    // roseType:"radius",//南丁格尔图 每个部分半径不一样
+                    // selectedMode:"single", //能够将单个选中的部分脱离原点一段距离
+                    selectedMode:"multiple", //能够将多个选中的部分脱离原点一段距离
+                    selectedOffset:30,
+                    color:['purple','skyblue','orange','pink','black'] //局部调色盘会覆盖全局调色盘
+                }
+            ]
+        }
+        echart.setOption(options)
+    </script>
+</body>
+</html>

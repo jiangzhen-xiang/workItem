@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./echarts.min.js"></script>
+</head>
+<body>
+    <!-- 雷达图  多个纬度的数据和标准数据对比-->
+    <div id="root" style="width:600px; height:400px;"></div>
+    <script>
+        let root = document.querySelector("#root");
+        let echart=echarts.init(root);
+        let dataMax=[
+            {name:"易用性",max:100},
+            {name:"功能",max:100},
+            {name:"拍照",max:100},
+            {name:"跑分",max:100},
+            {name:"续航",max:100},
+        ]
+        let options={
+            radar:{
+                indicator:dataMax, //通过radar配置各个维度以及最大值
+                shape:'circle',//配置雷达图最外层的形状 circle polygon多边形
+            },
+            series:[
+                {
+                    type:'radar', //雷达图
+                    data:[  //每个产品一个对象
+                        {
+                            name:"华为",
+                            value:[70,80,90,80,70],
+                        },
+                        {
+                            name:"中兴",
+                            value:[60,70,80,90,80],
+                        }
+                    ],
+                    label:{
+                        show:true, //显示数值
+                    },
+                    areaStyle:{},//将每一个产品的雷达图形成一个阴影区域
+                }
+            ]
+        }
+        echart.setOption(options);
+    </script>
+</body>
+</html>

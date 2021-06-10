@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+           电商平台数据可视化实时监控系统
+            1.后台搭建；
+            2.结合VUE开发图表组件；
+            3.Websocket实现数据推送；
+            4.主题切换/页面合并/全屏切换......
+        
+            启动后端项目
+             1.进入后端文件夹；
+             2.打开node并install依赖包；
+             3.node app.js启动后端项目。
+            前端项目启动
+             1.进入前端文件夹；
+             2.打开node并install依赖包；
+             3.npm run serve启动前端项目。
+             
+            实现效果
+             1.一端操作，多端联动；
+             2.实时获取后端数据；
+             3.支持大屏展示，自适应分辨率；
+
+            使用技术
+             1.Echarts；
+             2.Vue Vuex Vue-Router;
+             3.Webpack;
+             4.Axios;
+             5.WebSocket 前后端数据推送;
+             6.koa2 实现后端开发；
+
+            数据可视化的优点：更加清晰有效地传达信息
+            常见可视化工具
+             1.报表类 Excel；
+             2.BI类：商业智能BI，除了生成报表外，还能分析数据结果，有利于决策；
+             3.编码类：Echarts.js D3.js
+            
+            学习七个常用图表：柱状图/折线图/散点图/饼图/地图/雷达图/仪表盘图
+
+            这几种图表的通用配置属性：
+                1.标题title，
+                    文字样式：textStyle
+                    标题边框: borderWidth borderColor borderRedius
+                    标题位置: left top right bottom
+                2.提示tooltip, 提示框组件用于配置鼠标滑过或点击图表时的显示框
+                    触发类型：trigger
+                    触发时机：triggerOn
+                    格式化：formatter
+                3.工具按钮toolbox，
+                    内置有导出图片 saveAsImage
+                    数据视图 dataView
+                    动态类型切换 magicType 不同图表类型之间切换
+                    数据区域缩放 dataZoom
+                    重置 restore
+                4.图例legend
+                    用于筛选系列，需要和series配合使用
+                    data 数组 值与series中name值对应 
+
+            直角坐标系的图表：折线图，柱状图，散点图
+            直角坐标系常用配置项：
+                1.网格grid
+                2.坐标轴axis
+                3.区域缩放dataZoom
+
+
+            矢量地图实现办法:
+                1.准备中国的矢量地图json文件china.json
+                2.使用Ajax获取china.json
+                3.在回调函数中往echarts全局对象注册地图的json数据
+                4.在geo下设置type/map
+
+            内置主题的使用：在初始化第二个参数里面配置
+                light\dark
+            自定义主题：
+                1.在主题编辑器中编辑主题
+                2.下载主题，是一个js文件
+                3，引入主题js文件
+                4.在init方法中使用自定义主题
+        */
+
+    </script>
+</body>
+</html>
